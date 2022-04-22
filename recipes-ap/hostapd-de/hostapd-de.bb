@@ -9,7 +9,7 @@ RDEPENDS_${PN} = "hostapd"
 S = "${WORKDIR}"
 
 SRC_URI = " \
-    file://enable-wifi.service \
+    file://enable-ap.service \
     file://hostapd-de.service \
     file://hostapd-de.network \
     file://hostapd-de-ap.conf \
@@ -23,7 +23,7 @@ SYSTEMD_AUTO_ENABLE_${PN} = "disable"
 
 do_install() {
     install -d ${D}${systemd_unitdir}/system/ ${D}${systemd_unitdir}/network/ ${D}${sysconfdir}/ ${D}${sbindir}/hostapd-DE/
-    install -m 0644 enable-wifi.service ${D}${systemd_unitdir}/system/
+    install -m 0644 enable-ap.service ${D}${systemd_unitdir}/system/
     install -m 0644 hostapd-de.network ${D}${systemd_unitdir}/network/
     install -m 0644 hostapd-de.service ${D}${systemd_unitdir}/system/
     install -m 0644 hostapd-de-ap.conf ${D}${sysconfdir}/
@@ -35,5 +35,6 @@ FILES_${PN} += " \
     ${systemd_unitdir}/system/* \
     ${systemd_unitdir}/network/hostapd-de.network \
     ${sysconfdir}/hostapd-de-ap.conf \
+     ${sbindir}/* \
 "
 
